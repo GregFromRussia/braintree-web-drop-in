@@ -35,32 +35,37 @@ PaymentMethodView.prototype._initialize = function () {
       html = html.replace(/@ICON/g, 'logoApplePay')
         .replace(/@CLASSNAME/g, '')
         .replace(/@TITLE/g, this.strings['Apple Pay'])
-        .replace(/@SUBTITLE/g, '');
+        .replace(/@SUBTITLE/g, '')
+        .replace(/@EXPIRATION/g, '')
       break;
     case paymentMethodTypes.card:
       endingInText = this.strings.endingIn.replace('{{lastFourCardDigits}}', this.paymentMethod.details.lastFour);
       html = html.replace(/@ICON/g, 'icon-' + paymentMethodCardTypes[this.paymentMethod.details.cardType])
         .replace(/@CLASSNAME/g, ' braintree-icon--bordered')
         .replace(/@TITLE/g, endingInText)
-        .replace(/@SUBTITLE/g, this.strings[this.paymentMethod.details.cardType]);
+        .replace(/@SUBTITLE/g, this.strings[this.paymentMethod.details.cardType])
+        .replace(/@EXPIRATION/g, this.paymentMethod.details.expirationMonth+"/"+this.paymentMethod.details.expirationYear)
       break;
     case paymentMethodTypes.googlePay:
       html = html.replace(/@ICON/g, 'logoGooglePay')
         .replace(/@CLASSNAME/g, '')
         .replace(/@TITLE/g, this.strings['Google Pay'])
-        .replace(/@SUBTITLE/g, '');
+        .replace(/@SUBTITLE/g, '')
+        .replace(/@EXPIRATION/g, '')
       break;
     case paymentMethodTypes.paypal:
       html = html.replace(/@ICON/g, 'logoPayPal')
         .replace(/@CLASSNAME/g, '')
         .replace(/@TITLE/g, this.paymentMethod.details.email)
-        .replace(/@SUBTITLE/g, this.strings.PayPal);
+        .replace(/@SUBTITLE/g, this.strings.PayPal)
+        .replace(/@EXPIRATION/g, '')
       break;
     case paymentMethodTypes.venmo:
       html = html.replace(/@ICON/g, 'logoVenmo')
         .replace(/@CLASSNAME/g, '')
         .replace(/@TITLE/g, this.paymentMethod.details.username)
-        .replace(/@SUBTITLE/g, this.strings.Venmo);
+        .replace(/@SUBTITLE/g, this.strings.Venmo)
+        .replace(/@EXPIRATION/g, '')
       break;
     default:
       break;
